@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">POMODORO</string>
+    <string name="tab_text_2">History</string>
+    <string name="tab_text_1">New</string>
+    <string name="start">25:00</string>
+    <string name="notification_text">The pomodoro has been finished!</string>
+    <string name="status_stopped">Stopped</string>
+    <string name="status_finished">Finished</string>
+</resources>
