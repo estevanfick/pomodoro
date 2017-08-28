@@ -5,8 +5,8 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "history")
 data class PomodoroHistory(
-        var time: String = "",
-        var date: Long = 0,
-        var status: Int = 0,
+        var time: Long,
+        var date: Long,
+        var status: Int,
         @PrimaryKey(autoGenerate = true)
         var id: Long = 0 )

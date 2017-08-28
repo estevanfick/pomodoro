@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import fm.superplayer.pomodoro.R
+import fm.superplayer.pomodoro.ext.toTimeString
 import fm.superplayer.pomodoro.model.PomodoroHistory
 import kotlinx.android.synthetic.main.list_item_pomodoro_date.view.*
 import kotlinx.android.synthetic.main.list_item_pomodoro_history.view.*
@@ -66,7 +67,7 @@ class PomodoroHistoryAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class HistoryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(history: PomodoroHistory){
-            itemView.txtTimeHistory.text = history.time
+            itemView.txtTimeHistory.text = history.time.toTimeString()
             itemView.txtStatus.text = if (history.status == 0) itemView.context.getString(R.string.status_stopped) else itemView.context.getString(R.string.status_finished)
             if (DateUtils.isToday(history.date)){
                 itemView.txtDate.text = DateUtils.getRelativeTimeSpanString(history.date).toString()

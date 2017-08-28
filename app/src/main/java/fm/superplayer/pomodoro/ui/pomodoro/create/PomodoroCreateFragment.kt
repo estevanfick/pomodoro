@@ -25,12 +25,10 @@ import java.util.*
 
 class PomodoroCreateFragment : Fragment() {
 
-    val visualStartTimer: String = "25:00"
-    val startTimer: Long = 1500000
-
     private var running = false
     private var timer: CountDownTimer? = null
     var currentTime: Long = 0
+    val startTimer: Long = 1500000
 
     companion object {
         fun newInstance(): PomodoroCreateFragment {
@@ -63,7 +61,7 @@ class PomodoroCreateFragment : Fragment() {
 
     private fun stopTimer(){
         timer?.cancel()
-        saveHistory(currentTime.toTimeString(), 0)
+        saveHistory(currentTime, 0)
     }
 
     private fun startTimer(){
@@ -74,12 +72,12 @@ class PomodoroCreateFragment : Fragment() {
 
             override fun onTick(millis: Long) {
                 currentTime = startTimer - millis
-                textTimerPomodoro.text = millis.toTimeString()
+                textTimerPomodoro?.text = millis.toTimeString()
             }
 
             override fun onFinish() {
                 showNotification()
-                saveHistory(visualStartTimer, 1)
+                saveHistory(startTimer, 1)
             }
         }.start()
     }
@@ -89,11 +87,11 @@ class PomodoroCreateFragment : Fragment() {
         startPomodoro.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_play_arrow_24dp))
         textTimerPomodoro.run {
             setTextColor(ContextCompat.getColor(activity, R.color.textStop))
-            text = visualStartTimer
+            text = startTimer.toTimeString()
         }
     }
 
-    private fun saveHistory(time: String, status: Int){
+    private fun saveHistory(time: Long, status: Int){
         finish()
         val date = Calendar.getInstance().timeInMillis
         val history = PomodoroHistory(time, date, status)
